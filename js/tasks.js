@@ -1,32 +1,34 @@
-var tasks = [];
+(function() {
+    var tasks = [];
 
-function addTask() {
-    'use strict';
+    function addTask() {
+        'use strict';
 
-    var task = document.getElementById('task');
-    var output = document.getElementById('output');
+        var task = document.getElementById('task');
+        var output = document.getElementById('output');
 
-    var msg = '';
+        var msg = '';
 
-    if(task.value) {
-        tasks[tasks.length] = task;
-        
-        msg = 'You have ' + tasks.length + ' task(s) in your to-do list.';
+        if(task.value) {
+            tasks.push(task.value);
+            
+            msg = '<h2>To-Do</h2><ol>';
+            for(var i = 0, count = tasks.length; i < count; i++) {
+                msg += '<li>' + tasks[i] + '</li>';
+            }
+            msg += '</ol>'
 
-        if(output.textContent !== undefined) {
-            output.textContent = msg;
-        } else {
-            output.innerText = msg;
+            output.innerHTML = msg;
         }
+
+        return false;
     }
 
-    return false;
-}
+    function init() {
+        'use strict';
 
-function init() {
-    'use strict';
+        document.getElementById('theForm').onsubmit = addTask;
+    }
 
-    document.getElementById('theForm').onsubmit = addTask;
-}
-
-window.onload = init;
+    window.onload = init;
+})();
