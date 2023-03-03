@@ -3,13 +3,13 @@ function limitText() {
     'use strict';
 
     var limitedText;
-    var originalText = document.getElementById('comments').value;
-    var lastSpace = originalText.lastIndexOf(' ', 100);
+    var originalText = U.$('comments');
+    var count = comments.value.length;
+    U.$('count').value = count;
 
-    limitedText = originalText.slice(0, lastSpace);
-
-    document.getElementById('count').value = originalText.length;
-    document.getElementById('result').value = limitedText;
+    if(count > 100) {
+        comments.value = comments.value.slice(0, 100);
+    }
 
     return false;
 }
@@ -18,7 +18,7 @@ function init() {
 
     'use strict';
 
-    document.getElementById('theForm').onsubmit = limitText;
+    U.addEvent(U.$('comments'), 'keyup', limitText);
 
 }
 
