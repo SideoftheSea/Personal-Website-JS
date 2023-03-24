@@ -90,4 +90,6 @@ body{
         margin-bottom: 10px;
         color: blue;
     }
-    
+    textarea {
+        text-align: center;
+    }
